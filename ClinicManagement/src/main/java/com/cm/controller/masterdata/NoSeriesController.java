@@ -1,10 +1,12 @@
 package com.cm.controller.masterdata;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +29,10 @@ public class NoSeriesController {
 
 	// This method is used to add values in NoSeries
 	@RequestMapping(value = "/insert")
-	public String addNoSeries(@ModelAttribute("Noseries") @Valid NoSeries ns) {
+	public String addNoSeries(@ModelAttribute("Noseries") @Valid NoSeries ns, BindingResult result) {
+		if (result.hasErrors()) {
+			return "MasterData/FormAddNoSeries";
+		}
 		noSeriesService.createNoSeries(ns);
 		return "redirect:/MasterData/ListMasterData";
 	}
@@ -38,21 +43,21 @@ public class NoSeriesController {
 		model.addAttribute("editNoSeries", noSeriesService.findIdNoSeries(rowID));
 		return "MasterData/FormEditNoSeries";
 	}
-	
+
 	// This method is used to updating values in NoSeries
 	@RequestMapping(value = "/eidt", method = RequestMethod.POST)
-	public String editNoSeries(@ModelAttribute("editNoSeries") NoSeries id){
-		noSeriesService.updateNoSeries(id);
+	public String editNoSeries(@ModelAttribute("editNoSeries") NoSeries ns) {
+		noSeriesService.updateNoSeries(ns);
 		return "redirect:/MasterData/ListMasterData";
 	}
 
 	// This method is used to delete values in NoSeries
-	@RequestMapping(value = {"/delete/{rowID}"})
+	@RequestMapping(value = { "/delete/{rowID}" })
 	public String deleteNoSeries(@PathVariable("rowID") int id, HttpSession session, Model model) {
 		NoSeries noSeries = noSeriesService.findIdNoSeries(id);
 		noSeries.setBlock(0);
 		noSeriesService.updateNoSeries(noSeries);
 		return "redirect:/MasterData/ListMasterData";
 	}
-	
+
 }

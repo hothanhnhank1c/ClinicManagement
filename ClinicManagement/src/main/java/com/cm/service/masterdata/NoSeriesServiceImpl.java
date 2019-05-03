@@ -15,42 +15,42 @@ public class NoSeriesServiceImpl implements NoSeriesService {
 	@Autowired
 	private NoSeriesDao noSeriesDao;
 
-	//This method is used to show list NoSeries
+	// This method is used to show list NoSeries
 	@Override
 	@Transactional
 	public List<NoSeries> listNoSeries() {
 		return noSeriesDao.listNoSeries();
 	}
 
-	//This  method is used to create NoSeries
+	// This method is used to create NoSeries
 	@Override
 	@Transactional
 	public void createNoSeries(NoSeries noSeries) {
+		noSeries.setBlock(0);
 		noSeriesDao.save(noSeries);
-		
+
 	}
 
-	// This method is used to retrieve the id you want to find 
+	// This method is used to retrieve the id you want to find
 	@Override
 	@Transactional
 	public NoSeries findIdNoSeries(Integer id) {
-		return noSeriesDao.getNoSeriesById(id);	
+		return noSeriesDao.getNoSeriesById(id);
 	}
 
-	//This method is used to update the selected id
+	// This method is used to update the selected id
 	@Override
 	@Transactional
 	public void updateNoSeries(NoSeries noSeries) {
 		noSeriesDao.update(noSeries);
-		
+
 	}
 
-	//This method is used to delete the selected id
+	// This method is used to delete the selected id
 	@Override
-    @Transactional
-    public void deleteNoSeries(Integer id) {
-        noSeriesDao.deleteNoSeries(id);
-    }
- 
+	@Transactional
+	public void deleteNoSeries(Integer id) {
+		noSeriesDao.deleteNoSeries(id);
+	}
 
 }

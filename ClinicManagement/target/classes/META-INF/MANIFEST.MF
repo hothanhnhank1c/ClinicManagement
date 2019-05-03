@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Built-By: PC14
-Build-Jdk: 12
 Implementation-Title: ClinicManagement
 Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: PC-08
 Implementation-Vendor-Id: com.cm
-Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
- -starter-parent/ClinicManagement
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/ClinicManagement
 Created-By: Maven Integration for Eclipse
 

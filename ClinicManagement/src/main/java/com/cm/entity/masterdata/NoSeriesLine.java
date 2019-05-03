@@ -1,13 +1,17 @@
 package com.cm.entity.masterdata;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "[No_ Series Line]")
@@ -20,13 +24,12 @@ public class NoSeriesLine implements Serializable {
 	@GeneratedValue
 	@Column(name = "RowID", nullable = false, unique = true, insertable = false, updatable = false)
 	private Integer rowID;
-
 	@Id
-	@Column(name = "[Series Code]", updatable = false)
+	@Column(name = "[Series Code]")
 	private String seriesCode;
 
 	@Id
-	@Column(name = "Code", updatable = false)
+	@Column(name = "Code")
 	private String code;
 
 	@Column(name = "[Starting No_]")
@@ -51,7 +54,7 @@ public class NoSeriesLine implements Serializable {
 	private Integer block;
 
 	@Column(name = "[Last Date Used]")
-	private Timestamp lastDateUsed;
+	private Date lastDateUsed;
 
 	@Column(name = "[Ext_ Last No_ Used]")
 	private Integer extLastNoUsed;
@@ -91,6 +94,19 @@ public class NoSeriesLine implements Serializable {
 
 	@Column(name = "[Posting Group]")
 	private String postingGroup;
+
+//	@ManyToOne
+//	@JoinColumn(name = "[Series Code]", nullable = false)
+//	private NoSeries noSeries;
+//
+//
+//	public NoSeries getNoSeries() {
+//		return noSeries;
+//	}
+//
+//	public void setNoSeries(NoSeries noSeries) {
+//		this.noSeries = noSeries;
+//	}
 
 	public Integer getRowID() {
 		return rowID;
@@ -164,11 +180,11 @@ public class NoSeriesLine implements Serializable {
 		this.block = block;
 	}
 
-	public Timestamp getLastDateUsed() {
+	public Date getLastDateUsed() {
 		return lastDateUsed;
 	}
 
-	public void setLastDateUsed(Timestamp lastDateUsed) {
+	public void setLastDateUsed(Date lastDateUsed) {
 		this.lastDateUsed = lastDateUsed;
 	}
 

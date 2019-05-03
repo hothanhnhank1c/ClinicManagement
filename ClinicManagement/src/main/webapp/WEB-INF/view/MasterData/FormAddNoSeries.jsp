@@ -24,10 +24,6 @@
 					<form:form class="forms-sample" method="post"
 						action="/NoSeries/insert" modelAttribute="Noseries">
 						<div class="form-group">
-							<label for="exampleInputName1">RowID</label>
-							<form:input path="rowID" type="text" class="form-control round" />
-						</div>
-						<div class="form-group">
 							<label for="exampleInputName1">Series Code</label>
 							<form:input path="seriesCode" type="text" class="form-control round" />
 							<form:errors path="seriesCode" cssStyle="color: red" />
@@ -51,9 +47,7 @@
 							<label for="exampleInputName1">Date Order</label>
 							<form:input path="dateOrder" type="text" class="form-control round" />
 							<form:errors path="dateOrder" cssStyle="color: red" />
-							<form:hidden path="block" readonly="true" value="1" />
 						</div>
-						
 						<button type="submit" class="btn btn-outline-success round">Lưu</button>
 						<a href="<c:url value="/MasterData/ListMasterData"> </c:url> "
 							class="btn btn-outline-danger round">Hủy</a>

@@ -9,8 +9,6 @@ public interface NoSeriesLineService {
 
 	List<NoSeriesLine> listNoSeriesLine();
 
-	List<NoSeriesLine> listNoSeriesLineBySeriesCode(String seriesCode);
-
 	void addNoSeriesLine(NoSeriesLine nsl);
 
 	NoSeriesLine getSeriesLineById(Integer id);
@@ -20,5 +18,7 @@ public interface NoSeriesLineService {
 	void deleteNoSeriesLine(NoSeriesLine nsl);
 
 	ArrayList<String> providedNoAndExtNo(String seriesCode, String code);
+
+	List<NoSeriesLine> listNoSeriesLineBySeriesCode(String seriesCode);
 
 }

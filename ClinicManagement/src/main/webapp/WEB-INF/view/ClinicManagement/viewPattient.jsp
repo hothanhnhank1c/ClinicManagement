@@ -63,33 +63,19 @@ input::-webkit-input-placeholder {
 </div>
 
 <h1 style="color: blue;">Thông Tin Bệnh Nhân</h1>
-<p>Tìm Kiếm</p>
-<form>
-	<i>Mã CMND:</i> <input type="search" placeholder="Search"> <i>Mã
-		Bệnh Nhân:</i> <input type="search" placeholder="Search"> <i>Tên
-		Bệnh Nhân:</i> <input type="search" placeholder="Search">
-	<hr>
-	<i>Số Điện Thoại:</i> <input type="search" placeholder="Search">
-	<i>Từ Ngày:</i> <input type="date" name="bday"> <i>Đến
-		Ngày:</i> <input type="date" name="bday"><br> <br>
-	<button type="button" class="btn btn-success"
-		style="margin-left: 650px">Tìm Kiếm</button>
-</form>
-<p>Danh Sách Bệnh Nhân</p>
 <div class="example">
-	<div class="container">
-		<div class="row">
+	<div class="row">
+		<div class="col-md-9"></div>
+		<div class="col-md-3">
 			<button type="button" class="btn btn-default">Đặt Lịch</button>
-			<button type="button" class="btn btn-primary">Khám Bệnh</button>
-			<button type="button" class="btn btn-success">Thêm Mới</button>
-			<button type="button" class="btn btn-info">Sửa</button>
-			<button type="button" class="btn btn-warning">Xóa</button>
-
+			<a href="/ClinicManagement/Home"><button type="button"
+					class="btn btn-primary">Khám Bệnh</button></a> <a
+				href="/ClinicManagement/addPattient/${seriesCode}&${code}"><button type="button"
+					class="btn btn-success">Thêm Mới</button></a>
 		</div>
 	</div>
 </div>
 <div class="row">
-
 	<div class="col-md-12">
 		<p>Thông Tin Bệnh Nhân</p>
 		<!--Table No Series Line -->
@@ -116,7 +102,7 @@ input::-webkit-input-placeholder {
 										<tr style="font-weight: bold">
 											<th><input type='checkbox' name='name[]' id='check_all'
 												value='' /></th>
-											<th>Row ID</th>
+											<th>STT</th>
 											<th>Pattient No_</th>
 											<th>Fist Name</th>
 											<th>Last Name</th>
@@ -129,6 +115,7 @@ input::-webkit-input-placeholder {
 											<th>Phone Number</th>
 											<th>Email</th>
 											<th>Religion</th>
+											<th>Marital Status</th>
 											<th>No_ ID</th>
 											<th>Issued by</th>
 											<th>Issued Date</th>
@@ -144,17 +131,73 @@ input::-webkit-input-placeholder {
 											<th>Current Commune No_</th>
 											<th>Current District No_</th>
 											<th>Current Province No_</th>
-											<th>Posting No_ Series</th>
-											<th>No_ Series</th>
 											<th>Created By</th>
 											<th>Created Date</th>
 											<th>Modified By</th>
 											<th>Modified Date</th>
 											<th>Clinic No_</th>
 											<th>Company No_</th>
-											<th>Status</th>
+											<th>Company No_</th>
 										</tr>
 									</thead>
+									<tbody>
+										<c:forEach var="listpattient" items="${ListPattient}"
+											varStatus="counter">
+											<tr>
+												<td><input type='checkbox' name='name[]' id='check_all'
+													value='rowID' /></td>
+												<td>${counter.index + 1}</td>
+												<td><a href="#">${listpattient.no}</a></td>
+												<td>${listpattient.fistName}</td>
+												<td>${listpattient.lastName}</td>
+												<td style='text-align: left;'><c:if
+														test="${listpattient.sex == 0}">Nam</c:if> <c:if
+														test="${listpattient.sex == 1}">Nữ</c:if></td>
+												<td>${listpattient.height}</td>
+												<td>${listpattient.weight}</td>
+												<td style='text-align: left;'><c:if
+														test="${listpattient.bloodGroup == 0}">O</c:if> <c:if
+														test="${listpattient.bloodGroup == 1}">A</c:if> <c:if
+														test="${listpattient.bloodGroup == 2}">B</c:if> <c:if
+														test="${listpattient.bloodGroup == 3}">AB</c:if></td>
+												<td>${listpattient.birthday}</td>
+												<td>${listpattient.ethnicity.ethnicName}</td>
+												<td>${listpattient.phoneNumber}</td>
+												<td>${listpattient.email}</td>
+												<td>${listpattient.religion}</td>
+												<td style='text-align: left;'><c:if
+														test="${listpattient.maritalStatus == 0}">Độc Thân</c:if>
+													<c:if test="${listpattient.maritalStatus == 1}">Đã Kết Hôn</c:if>
+												</td>
+												<td>${listpattient.no_ID}</td>
+												<td>${listpattient.issuedby}</td>
+												<td>${listpattient.issuedDate}</td>
+												<td>${listpattient.insuranceNo_}</td>
+												<td>${listpattient.address}</td>
+												<td>${listpattient.communeNo_}</td>
+												<td>${listpattient.districtNo_}</td>
+												<td>${listpattient.provinceNo_}</td>
+												<td>${listpattient.jobDescription}</td>
+												<td>${listpattient.workplace}</td>
+												<td style='text-align: left;'><c:if
+														test="${listpattient.objecttype == 0}">Nội Trú</c:if> <c:if
+														test="${listpattient.objecttype == 1}">Ngoại Trú</c:if></td>
+												<td>${listpattient.currentAddress}</td>
+												<td>${listpattient.currentCommuneNo_}</td>
+												<td>${listpattient.currentDistrictNo_}</td>
+												<td>${listpattient.currentProvinceNo_}</td>
+												<td>${listpattient.createdBy}</td>
+												<td>${listpattient.createdDate}</td>
+												<td>${listpattient.modifiedBy}</td>
+												<td>${listpattient.modifiedDate}</td>
+												<td>${listpattient.clinicNo}</td>
+												<td>${listpattient.companyNo}</td>
+												<td><a class="btn btn-outline-success round"
+													href="/ClinicManagement/addMedicalRecord/${listpattient.no}">Sửa
+												</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -162,6 +205,10 @@ input::-webkit-input-placeholder {
 				</div>
 			</div>
 		</section>
+		<script type="text/javascript">
+			var genderMaleCheckbox = document.getElementById('check_all');
+			var isGenderMale = genderMaleCheckbox.checked;
+		</script>
 		<!-- end -->
 	</div>
 </div>

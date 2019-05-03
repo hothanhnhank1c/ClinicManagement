@@ -14,7 +14,6 @@ public class home {
 
 	@RequestMapping("/")
 	public String home(Model model) {
-		jobService.list();
 		return "index";
 	}
 }

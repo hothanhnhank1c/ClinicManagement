@@ -33,36 +33,36 @@ public class MasterDataController {
 
 	// This method is used to show list No Series Line
 	@RequestMapping(value = { "/ListMasterData/{seriesCode}" }, method = RequestMethod.GET)
-	public String listNoSeriesLine(Model model, @PathVariable String seriesCode) {
+	public String listNoSeriesLine(Model model, @PathVariable("seriesCode") String seriesCode) {
 		// series code take from table no series transmitted to the table no series line
 		model.addAttribute("ListNoSeriesLine", noSeriesLineService.listNoSeriesLineBySeriesCode(seriesCode));
-
 		NoSeriesLine nsl = new NoSeriesLine();
 		// set value take from url
 		nsl.setSeriesCode(seriesCode);
 		model.addAttribute("seriesCode", seriesCode);
-
 		// when transmitted finish will lost table no series so call this method for
 		// load table one more
 		model.addAttribute("ListNoSeries", noSeriesService.listNoSeries());
 		return "MasterData/ListMasterData";
 	}
-
+	// This method is used to get No and Ex No
 	@RequestMapping(value = { "/CheckNoSeriesLine/{seriesCode}&{code}" }, method = RequestMethod.GET)
 	public String checkSeriesCodeAndCode(Model model, @PathVariable("seriesCode") String seriesCode,
 			@PathVariable("code") String code) {
+		//Note: 0 = No ; 1 = Ext No
 		ArrayList<String> listCode = noSeriesLineService.providedNoAndExtNo(seriesCode, code);
-		
-		//check 
+		String x = listCode.get(0);
+		model.addAttribute("x", x);
+		// check
 		if (listCode.get(2).equals("2")) {
 			model.addAttribute("SUCCESS_MESSAGE", "Khong Co Data");
 			System.out.println("KHONG CO DATA");
 			System.out.println(listCode);
-		} else if(listCode.get(2).equals("1")){
+		} else if (listCode.get(2).equals("1")) {
 			model.addAttribute("SUCCESS_MESSAGE", "Sap Tran Data");
 			System.out.println(listCode);
-		}else if(listCode.get(2).equals("0")){
-			model.addAttribute("SUCCESS_MESSAGE","<script>alert('Thêm thành công');</script>");
+		} else if (listCode.get(2).equals("0")) {
+			model.addAttribute("SUCCESS_MESSAGE", "Co Data");
 			System.out.println(listCode);
 		}
 		return "index";

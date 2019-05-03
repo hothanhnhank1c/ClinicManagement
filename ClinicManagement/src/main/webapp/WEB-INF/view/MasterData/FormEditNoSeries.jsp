@@ -31,7 +31,7 @@
 						<div class="form-group">
 							<label for="exampleInputName1">Series Code</label>
 							<form:input path="seriesCode" type="text"
-								class="form-control round" readonly="true"/>
+								class="form-control round" readonly="true" />
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName1">Description</label>
@@ -52,11 +52,15 @@
 							<label for="exampleInputName1">Date Order</label>
 							<form:input path="dateOrder" type="text"
 								class="form-control round" />
-								<form:hidden path="block" readonly="true" />
+						</div>
+						<div>
+							<form:checkbox path="block" value="0" />0
+                            <form:checkbox path="block" value="1" />1 
+                                      
 						</div>
 						<button type="submit" class="btn btn-outline-success round">Lưu</button>
 						<a href="<c:url value="/MasterData/ListMasterData"> </c:url> "
-							class="btn btn-outline-danger round"">Hủy</a>
+							class="btn btn-outline-danger round">Hủy</a>
 					</form:form>
 				</div>
 			</div>

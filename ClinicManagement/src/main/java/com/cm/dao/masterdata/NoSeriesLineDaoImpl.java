@@ -15,13 +15,14 @@ public class NoSeriesLineDaoImpl extends ResponsitoryDaoImpl<NoSeriesLine, Strin
 	@Override
 	public List<NoSeriesLine> listBySeriesCode(String seriesCode) {
 		@SuppressWarnings("rawtypes")
-		Query query = createQuery("from NoSeriesLine where seriesCode = :seriesCode and code =:code ");
+		Query query = createQuery("from NoSeriesLine where seriesCode = :seriesCode and block = :block ");
 		query.setParameter("seriesCode", seriesCode);
-		query.setParameter("code", 0);
+		query.setParameter("block", 0);
 		@SuppressWarnings("unchecked")
 		List<NoSeriesLine> list = query.list();
 		return list;
 	}
+	
 	//method find by ID
 	@Override
 	public NoSeriesLine getById(Integer id) {

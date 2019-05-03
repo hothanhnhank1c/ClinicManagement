@@ -36,6 +36,7 @@
 									<th>Defaul No</th>
 									<th>Manual No</th>
 									<th>Date Order</th>
+									<th>Block</th>
 									<th>Function</th>
 								</tr>
 							</thead>
@@ -50,6 +51,7 @@
 										<td>${ListNoSeries.defaultNos}</td>
 										<td>${ListNoSeries.manualNos}</td>
 										<td>${ListNoSeries.dateOrder}</td>
+										<td>${ListNoSeries.block}</td>
 										<td><a class="btn btn-outline-danger round"
 											onclick="return confirm('Bạn có muốn xóa sinh viên này?');"
 											href="/NoSeries/delete/${ListNoSeries.rowID }">Xoá</a> <a
@@ -62,10 +64,9 @@
 						<script>
 							function canhbao() {
 								return confirm("Bạn Có Chắc Muốn Xóa Không?");
-							}  
-							
-				</script>
-				</div>
+							}
+						</script>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -74,7 +75,7 @@
 <!-- end -->
 
 <!--Table No Series Line -->
-<section id="horizontal">
+<section id="configuration">
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
@@ -111,6 +112,7 @@
 									<th>External Starting No</th>
 									<th>External Increment By No</th>
 									<th>Responsibility Center</th>
+									<th>Block</th>
 									<th>Description</th>
 									<th>Location Code</th>
 									<th>Default Customer</th>
@@ -139,6 +141,7 @@
 										<td>${ListNoSeriesLine.extStartingNo}</td>
 										<td>${ListNoSeriesLine.extIncrementbyNo}</td>
 										<td>${ListNoSeriesLine.responsibilityCenter}</td>
+										<td>${ListNoSeriesLine.block}</td>
 										<td>${ListNoSeriesLine.description}</td>
 										<td>${ListNoSeriesLine.locationCode}</td>
 										<td>${ListNoSeriesLine.defaultCustomer}</td>
@@ -149,8 +152,8 @@
 										<td>${ListNoSeriesLine.postingGroup}</td>
 										<td><a onclick="return confirm('Bạn có muốn xóa này?');"
 											class="btn btn-outline-danger round"
-											href="/NoSeriesLine/delete/${ListNoSeriesLine.rowID }">Xoá</a> <a
-											class="btn btn-outline-success round"
+											href="/NoSeriesLine/delete/${ListNoSeriesLine.rowID }">Xoá</a>
+											<a class="btn btn-outline-success round"
 											href="/NoSeriesLine/showFormUpdateNoSeriesLine/${ListNoSeriesLine.rowID}">
 												Sửa </a></td>
 									</tr>
@@ -164,7 +167,6 @@
 	</div>
 </section>
 <!-- end -->
-
 <!-- form add no series line -->
 <section id="configuration">
 	<div class="row">
@@ -182,97 +184,135 @@
 							</ul>
 						</div>
 					</div>
-					<h3 class="content-header-title mb-0">ADD SERIES LINE</h3>
-					<br> <a href="#"
-						class='addsection btn btn-outline-success round btn-min-width mr-1 mb-1'>Add
-						Section</a>
-					<div id="sections">
-						<div class="section">
-							<form:form modelAttribute="insertNoSeriesLine" class="forms-sample"
-								method="post" action="/NoSeriesLine/insert">
-								<hr>
-								<fieldset>  
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Series Code</label> <input value="${seriesCode }"
-											class="form-control round" name="seriesCode"></input>
+					<h3 class="content-header-title mb-0">NO SERIES LINE</h3>
+					<br>
+					<div class="collapse in" id="boxnoidung5">
+						<div>
+							<p class="card-text">
+							<div class="row"
+								style="border: 1px solid black; padding: 1px; overflow-x: auto; border-color: #F8F8FF;">
+								<p
+									style="height: 1px; width: 2600px; border: 0.5px solid blue; border-color: #696969;">
+								<table class="table" style="width: 2600px;">
+									<thead>
+										<tr>
+											<th style="width: 190px; text-align: center;">Series
+												Code</th>
+											<th style="width: 190px; text-align: center;">Code</th>
+											<th style="width: 190px; text-align: center;">Starting
+												No</th>
+											<th style="width: 190px; text-align: center;">Ending No</th>
+											<th style="width: 190px; text-align: center;">Warning No</th>
+											<th style="width: 190px; text-align: center;">Increment
+												by No</th>
+											<th style="width: 190px; text-align: center;">Last No
+												Used</th>
+											<th style="width: 190px; text-align: center;">External
+												Last No Used</th>
+											<th style="width: 190px; text-align: center;">External
+												Starting No</th>
+											<th style="width: 190px; text-align: center;">External
+												Increment by No</th>
+											<th style="width: 190px; text-align: center;">Responsibility
+												Center</th>
+											<th style="width: 190px; text-align: center;">Description</th>
+
+											<th style="width: 190px; text-align: center;">Location
+												Code</th>
+											<th style="width: 190px; text-align: center;">UserID</th>
+											<th style="width: 190px; text-align: center;">External
+												Ending No</th>
+											<th style="width: 190px; text-align: center;">Remove</th>
+										</tr>
+									</thead>
+								</table>
+								<div id="sections">
+									<div class="section">
+										<table class="table" style="width: 2600px;">
+											<tbody>
+												<tr>
+													<form modelAttribute="insertNoSeriesLine" method="post"
+														action="/NoSeriesLine/insert">
+														<td style="width: 190px"><input
+															value="${seriesCode }" name="seriesCode" type="text"
+															class="form-control round" /></td>
+														<td style="width: 190px"><input name="code"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="startingNo"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="endingNo"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="warningNo"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="incrementbyNo"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="lastNoUsed"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="extLastNoUsed"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="extStartingNo"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input
+															name="extIncrementbyNo" type="text"
+															class="form-control round" /></td>
+														<td style="width: 190px"><input
+															name="responsibilityCenter" type="text"
+															class="form-control round" /></td>
+														<td style="width: 190px"><input name="description"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="locationCode"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="userID"
+															type="text" class="form-control round" /></td>
+														<td style="width: 190px"><input name="extEndingNo"
+															type="text" class="form-control round" /></td>
+														<button type="submit"
+															class="btn btn-outline-success round btn-min-width mr-1 mb-1">Thêm</button>
+													</form>
+												</tr>
+											</tbody>
+										</table>
 									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Code</label> <input class="form-control round"
-											name="code"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Starting No</label> <input class="form-control round"
-											name="startingNo"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Ending No</label> <input class="form-control round"
-											name="endingNo"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Warning No</label> <input class="form-control round"
-											name="warningNo"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Increment by No</label> <input
-											class="form-control round" name="incrementbyNo"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Last No Used</label> <input class="form-control round"
-											name="lastNoUsed"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-									
-										<label>External Last No Used</label> <input
-											class="form-control round" name="extLastNoUsed"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>External Starting No</label> <input
-											class="form-control round" name="extStartingNo"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>External Increment by No</label> <input
-											class="form-control round" name="extIncrementbyNo"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Responsibility Center</label> <input
-											class="form-control round" name="responsibilityCenter"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Description</label> <input class="form-control round"
-											name="description"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>Location Code</label> <input class="form-control round"
-											name="locationCode"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>UserID</label> <input class="form-control round"
-											name="userID"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<label>External Ending No</label> <input
-											class="form-control round" name="extEndingNo"></input>
-									</div>
-									<div class="form-group col-xl-2 col-lg-6 col-md-12 mb-1">
-										<a href="#"
-											class='remove btn btn-outline-danger round btn-min-width mr-1 mb-1'>Remove
-											Section</a>
-									</div>
-									<button type="submit"
-										class="btn btn-outline-success round btn-min-width mr-1 mb-1">Thêm</button>
-									<a href="<c:url value="/nhatkycongviec"> </c:url> "
-										class="btn btn-outline-danger round btn-min-width mr-1 mb-1">Hủy</a>
-								</fieldset>
-							</form:form>
+								</div>
+								<a href="#" class='addsection round'
+									style='color: #02988C; font-size: 30px;'>+</a>
+							</div>
+
 						</div>
 					</div>
+					<!-- - -->
+					<!-- -->
 				</div>
 			</div>
 		</div>
 	</div>
+
 </section>
 <!-- end -->
+<script type="text/javascript">
+	$(document).ready(function() {
 
+		//Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+		$("#formDemo").validate({
+			rules : {
+				ho : "required",
+				ten : "required",
+				diachi : {
+					required : true,
+					minlength : 2
+				}
+			},
+			messages : {
+				ho : "Vui lòng nhập họ",
+				ten : "Vui lòng nhập tên",
+				diachi : {
+					required : "Vui lòng nhập địa chỉ",
+					minlength : "Địa chỉ ngắn vậy, chém gió ah?"
+				}
+			}
+		});
+	});
+</script>
 <!-- 2 link script of jquery va javascrip -->
 <script
 	src="<c:url value="/resources/js/scripts/forms/form-jquery.js"/>"></script>

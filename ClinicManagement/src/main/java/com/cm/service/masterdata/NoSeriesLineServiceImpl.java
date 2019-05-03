@@ -34,6 +34,7 @@ public class NoSeriesLineServiceImpl implements NoSeriesLineService {
 	@Override
 	@Transactional
 	public void addNoSeriesLine(NoSeriesLine nsl) {
+		nsl.setBlock(0);
 		this.noSeriesLineDao.save(nsl);
 	}
 
@@ -125,5 +126,4 @@ public class NoSeriesLineServiceImpl implements NoSeriesLineService {
 		return listCode;
 
 	}
-
 }

@@ -151,14 +151,62 @@ body {
 	background: #F1F1F1;
 	color: #333;
 }
+    label {
+        display: inline-block;
+        width: 150px;
+    }
+    input[type="text"], input[type="password"] {
+        display: inline-block;
+        width: 200px;
+    }
+    label.error {
+        display: inline-block;
+        color:red;
+        width: 200px;
+    }
+
 </style>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				listClass = [ "phong_ban", "chuc_danh" ];
+				url = window.location.href;
+				selector = '.'
+						+ url.substring(url.lastIndexOf("ffse-fbms") + 10);
+				selector = selector.replace(/\//g, '').replace(/[0-9]/g, '');
+				$(selector).addClass('active open');
+
+				var i;
+				for (i = 0; i < listClass.length; i++) {
+					if (selector.includes(listClass[i])) {
+						$("." + listClass[i]).addClass('open');
+					}
+				}
+				console.log(selector);
+				if (selector.includes('ho_so')
+						&& !selector.includes('viewho_so')
+						&& !selector.includes('qlnsnv')
+						&& !selector.includes('ho_soedit')) {
+					$(".pbho_so").addClass('open');
+				}
+				if (selector.includes('hop_dong')
+						&& !selector.includes('viewhop_dong')
+						&& !selector.includes('qlnsnv')
+						&& !selector.includes('hop_dongedit')) {
+					$(".pbhop_dong").addClass('open');
+				}
+			});
+</script>
 
 </head>
 
